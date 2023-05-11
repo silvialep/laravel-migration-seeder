@@ -12,6 +12,9 @@
                 <th>Codice treno</th>
                 <th>Stazione di partenza</th>
                 <th>Stazione di arrivo</th>
+                <th>Data di partenza</th>
+                <th>Orario di partenza</th>
+                <th>Orario di arrivo</th>
                 <th>Numero di carrozze</th>
                 <th>Compagnia</th>
                 <th>In orario</th>
@@ -19,11 +22,14 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($trains as $train)
+            @foreach($trains->where('departure_date', '>', '2023-05-11') as $train)
             <tr>
                 <td>{{$train->train_code}}</td>
                 <td>{{$train->departure_station}}</td>
                 <td>{{$train->arrival_station}}</td>
+                <td>{{$train->departure_date}}</td>
+                <td>{{$train->departure_time}}</td>
+                <td>{{$train->arrival_time}}</td>
                 <td>{{$train->number_of_coaches}}</td>
                 <td>{{$train->company}}</td>
                 <td>@if($train->is_on_time == 1)
