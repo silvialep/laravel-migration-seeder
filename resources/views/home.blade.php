@@ -1,23 +1,46 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('layouts/main-layout')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Laravel</title>
-
-    <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
-    @vite('resources/js/app.js')
-
-</head>
-
-<body>
-
-    {{-- {{dd($trains)}} --}}
+@section('content')
 
 
-</body>
+{{-- {{dd($trains)}} --}}
+<div class="container">
+    <h1>Treni</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Codice treno</th>
+                <th>Stazione di partenza</th>
+                <th>Stazione di arrivo</th>
+                <th>Numero di carrozze</th>
+                <th>Compagnia</th>
+                <th>In orario</th>
+                <th>Cancellato</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($trains as $train)
+            <tr>
+                <td>{{$train->train_code}}</td>
+                <td>{{$train->departure_station}}</td>
+                <td>{{$train->arrival_station}}</td>
+                <td>{{$train->number_of_coaches}}</td>
+                <td>{{$train->company}}</td>
+                <td>@if($train->is_on_time == 1)
+                    {{'Sì'}}
+                    @else {{'Ritardo di:'}}
+                    @endif
+                </td>
+                <td>@if($train->is_cancelled == 0)
+                    {{'No'}}
+                    @else {{'Sì'}}
+                    @endif
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+        
+    </table>
+</div>
 
-</html>
+@endsection
