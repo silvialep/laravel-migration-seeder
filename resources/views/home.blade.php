@@ -15,6 +15,7 @@
 
 <body>
 
+    {{-- {{dd($trains)}} --}}
 
 
 </body>
