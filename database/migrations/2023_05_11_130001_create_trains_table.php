@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('arrival_station');
             $table->dateTime('departure_time');
             $table->dateTime('arrival_time');
-            $table->integer('train_code');
+            $table->string('train_code');
             $table->tinyInteger('number_of_coaches');
             $table->boolean('is_on_time');
             $table->boolean('is_cancelled');
